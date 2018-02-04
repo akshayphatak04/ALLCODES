@@ -1,0 +1,33 @@
+<apex:page standardController="Student__c" extensions="StudenRegistrationForm_Ext" language="{!language}" id="apexPageId">
+<apex:form id="theform">
+       <apex:sectionHeader title="Registration Form" />
+      <apex:pageMessages escape="false"></apex:pageMessages>
+        <apex:actionFunction action="{!changeLang}" name="changeToThisLang" reRender="pageBlockSection">
+            <apex:param name="firstParam" assignTo="{!lang}"  value=""/>
+        </apex:actionFunction>
+       
+        <apex:selectList id="languages" value="{!lang}" size="1" onclick="changeToThisLang(this.value)">
+            <apex:selectOptions value="{!languageSelectList}" />
+        </apex:selectList>
+        <apex:pageBlock title="Registration" >
+            <!-- Fields -->
+           <apex:pageBlockSection id="pageBlockSection" columns="2" showHeader="true" title="Personal Details" >
+                <apex:inputField value="{!Student__c.Name}" />
+                <apex:inputField value="{!Student__c.Roll_No__c}"/>
+                <apex:inputField value="{!Student__c.Gender__c}"/>
+                <apex:inputField value="{!Student__c.HSC__c}" />
+                <apex:inputField value="{!Student__c.SSC__c}"/>
+                <apex:inputField value="{!Student__c.City__c}" />
+                <apex:inputField value="{!Student__c.State__c}"/>
+                <apex:inputField value="{!Student__c.Country__c}" />
+                <apex:inputField value="{!Student__c.Course_Apply_For__c}"/>
+            </apex:pageBlockSection>
+            
+            <!-- Button Section -->
+            <apex:pageBlockButtons location="Bottom">
+                <apex:commandButton action="{!insertStudentRecords}" value="Submit"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+
+  </apex:page>

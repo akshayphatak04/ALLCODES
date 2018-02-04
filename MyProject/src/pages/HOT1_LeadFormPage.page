@@ -1,0 +1,138 @@
+<apex:page standardController="Lead" extensions="myControllerHOT1" sidebar="false" showHeader="false" >
+    <style>
+        strong
+        {
+        	text-align:center;
+        	color:white;
+        	font-size: 40px;
+        }
+    </style>
+    <apex:image value="{!$Resource.userimage}" width="90" height="90" style="margin-left:40px;margin-top:10px"/>
+    <apex:form id="theform">
+ 		<div style="background-color:#f9bf4c;width: 100%">
+            <marquee scrollamount="3"> <strong>
+                LOAN MANAGEMENT SYSTEM </strong>
+            </marquee>
+        </div>
+        <apex:sectionHeader subtitle="User Info" title="User Page Edit"/>
+        <apex:pageMessages escape="false"></apex:pageMessages>
+        <apex:pageBlock title="Form Edit" >
+            <apex:pageBlockButtons >
+                <apex:commandButton value="Save" action="{!saveRecord}"/>
+                <apex:commandButton value="Cancel"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Lead Information">
+                <apex:inputfield value="{!campmem.campaignID}"/>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Phone"/>
+                    <apex:inputField value="{!CurentLeadRec.Phone}"/> 
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel >First Name</apex:outputLabel>
+                    <apex:outputLabel >
+                        <apex:inputField value="{!CurentLeadRec.Salutation}"/>
+                        <apex:inputField value="{!CurentLeadRec.FirstName}" />
+                    </apex:outputLabel>
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Mobile"/>
+                    <apex:inputField value="{!CurentLeadRec.MobilePhone}"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Last Name"/>
+                    <apex:inputField value="{!CurentLeadRec.LastName}"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Fax"/>
+                    <apex:inputField value="{!CurentLeadRec.Fax}"/> 
+                </apex:pageBlockSectionItem>
+                
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Company"/>
+                    <apex:inputField value="{!CurentLeadRec.Company}"/> 
+                </apex:pageBlockSectionItem>
+                
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Email"/>
+                    <apex:inputField value="{!CurentLeadRec.Email}"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Title"/>
+                    <apex:inputField value="{!CurentLeadRec.Title}"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Website"/>
+                    <apex:inputField value="{!CurentLeadRec.Website}"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Lead Source"/>
+                    <apex:inputField value="{!CurentLeadRec.LeadSource}"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Lead Status"/>
+                    <apex:inputField value="{!CurentLeadRec.Status}"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Rating"/>
+                    <apex:inputField value="{!CurentLeadRec.Rating}"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Industry"/>
+                    <apex:inputField value="{!CurentLeadRec.Industry}"/> 
+                </apex:pageBlockSectionItem>
+                
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="No. of Employees"/>
+                    <apex:inputField value="{!CurentLeadRec.NumberOfEmployees}"/> 
+                </apex:pageBlockSectionItem>
+                
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Annual Revenue"/>
+                    <apex:inputField value="{!CurentLeadRec.AnnualRevenue}"/> 
+                </apex:pageBlockSectionItem>
+                
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Adress Information">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Street"/>
+                    
+                    <apex:inputField value="{!CurentLeadRec.Street}"/> 
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="City"/>
+                    <apex:inputField value="{!CurentLeadRec.City}"/> 
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="State/Province"/>
+                    <apex:inputField value="{!CurentLeadRec.State}"/> 
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Zip/Postal Code"/>
+                    <apex:inputField value="{!CurentLeadRec.PostalCode}"/> 
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Country"/>
+                    <apex:inputField value="{!CurentLeadRec.Country}"/> 
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <apex:pageBlockSection title="Additional Information" columns="2" collapsible="false" >         
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Description"/>
+                    <apex:inputField value="{!CurentLeadRec.Description}"/> 
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

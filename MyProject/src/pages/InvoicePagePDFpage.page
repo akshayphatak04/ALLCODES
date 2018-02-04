@@ -1,0 +1,90 @@
+<apex:page Controller="InvoiceController"  renderAs="pdf" sidebar="false" showHeader="false" action="{!displaynvoice}">
+    <body style='border-width:2px;border-color:blue;border-style: solid;' >
+        <div style='margin:30px;'>
+            <table style='width:100%;'>
+                <tr>
+                    <td align='left' style='font-weight:bold;font-size:20px;'>
+                        {!MerchName}
+                    </td>
+                    <td align='right' style='font-weight:bold;font-size:30px;color:#9393FF'>Invoice</td>
+                </tr>
+                <tr>
+                    <td align='left'>
+                        <div>{!merchAddress}</div>
+                        <div>{!merchCity}</div>
+                        <div>{!merchPhone}</div>
+                    </td>
+                    <td>
+                        <table align='right'  style='border-collapse: collapse;border: 0.3px solid black;width:100%;'>
+                            <tr style='font-size:12px;'>
+                                <th bgcolor='#e6e6e6' align='center' style='border: 0.3px solid black;'>INVOICE</th>
+                                <th bgcolor='#e6e6e6' align='center' style='border: 0.3px solid black;'>Date</th>
+                            </tr>
+                            <tr>
+                                <td align='center' style='border: 0.3px solid black;'>{!invoiceNo}</td>
+                                <td align='center' style='border: 0.3px solid black;'>{!invoiceDate}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table style='margin-top:30px;width:60%;' >
+                            <tr>
+                                <th align='left' bgcolor='#e6e6e6'  style='border: 0.3px solid black;'>BILL TO</th>
+                            </tr>
+                            <tr>
+                                <td>{!billName}</td>
+                            </tr>
+                            <tr>
+                                <td>{!billCompany}</td>
+                            </tr>
+                            <tr>
+                                <td>{!billStreetAddr}</td>
+                            </tr>
+                            <tr>
+                                <td>{!billCity}</td>
+                            </tr>
+                            <tr>
+                                <td>{!billphno}</td>
+                            </tr>
+                            <tr>
+                                <td>{!billEmail}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+            <table style='margin-top:40px;border: 0.3px solid black;width:100%;border-collapse: collapse;'>
+                <tr>
+                    <td bgcolor='#e6e6e6' style='padding:5px 5px 5px 15px; border: 0.3px solid black;' width='75%'>Description</td>
+                    <td bgcolor='#e6e6e6' style='border: 0.3px solid black;padding:5px 10px 5px 15px;width:100%' align='right'>Amount</td>
+                </tr>
+                <tr>
+                    <td style='vertical-align:top;height:300px;padding:5px 5px 5px 15px;border: 0.3px solid black;'>
+                        <apex:repeat value="{!productList}" var="product"> 
+                            <div>{!product.Name}</div>
+                        </apex:repeat>
+                    </td>
+                    <td style='padding:5px 10px 5px 15px;vertical-align:top;border: 0.3px solid black;' align='right'>
+                        <apex:repeat value="{!productList}" var="product" > 
+                            <div>{!product.Unit_Price__c}</div>
+                        </apex:repeat>
+                    </td>
+                </tr>
+            </table>  
+            <table style='border: 0.3px solid black;width:100%;border-collapse: collapse;'>
+                <tr>
+                    <td style='border: 0.3px solid black;' align='center' width='60%'>Thank You For Your Bussiness</td>
+                    <td style='border: 0.3px solid black;' ><span style='font-size:20px;margin-left:20px;margin-right:100px;'>TOTAL</span> &nbsp;&nbsp;&nbsp;&nbsp; {!totalamt}</td>
+                </tr>
+            </table>
+            <table width='100%' style='margin-top:40px;'>
+                <tr>
+                    <td align='center'>if you have any questions about this invoice, please contact</td>
+                </tr>
+                
+            </table>
+        </div>
+    </body>
+</apex:page>

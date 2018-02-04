@@ -1,0 +1,19 @@
+<apex:page Controller="Deletecontact">
+    <apex:sectionHeader />
+	<apex:includeScript value="{!$Resource.P_5_1}"/>
+  	<apex:outputPanel id="out2">
+    <apex:pageMessages />
+        </apex:outputPanel>
+    	<apex:form >
+    	<apex:pageBlock title="Account Records">
+            <apex:pageBlockTable value="{!accList}" var="accObj">
+                <apex:column >
+                    <apex:commandLink value="{!accObj.Name}" Action="{!showRelatedContacts}" >
+                	<apex:param value="{!accObj.Id}" name="Id"/>
+                    </apex:commandLink>
+                </apex:column>
+                <apex:column value="{!accObj.Id}"/>
+            </apex:pageBlockTable>
+            </apex:pageBlock>
+      </apex:form>
+</apex:page>

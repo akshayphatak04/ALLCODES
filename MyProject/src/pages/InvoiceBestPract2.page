@@ -1,0 +1,17 @@
+<apex:page Controller="InvoiceController" action="{!displayInvoiceList}">
+    <apex:pageBlock title="Invoices">
+        <apex:form >
+            <apex:pageBlockTable value="{!invoiceList}" var="invoice" id="pt" >
+               <apex:commandButton action="{!redirecttoInvoicePdf}">Click</apex:commandButton>
+               <apex:column headerValue="InvoiceNumber">
+                   <apex:commandLink value="{!invoice.Name}"  action="{!redirecttoInvoicePdf}">
+                       <apex:param value="{!invoice.Id}" name="idForInvoice" assignTo="{!billid}"/>
+                   </apex:commandLink>
+               </apex:column>
+               <apex:column value="{!invoice.Merchandise__r.name}"/>
+                    <apex:column value="{!invoice.status__c}"/>
+                    <apex:column value="{!invoice.Total_Amt__c}"/>
+            </apex:pageBlockTable>
+        </apex:form>
+    </apex:pageBlock>
+</apex:page>

@@ -1,0 +1,33 @@
+<apex:page controller="SearchAccController">
+    <apex:includeScript value="{!$Resource.P_5_1}"/>
+    <apex:outputPanel id="out2">
+        <apex:pageMessages />
+    </apex:outputPanel>
+    <apex:form >
+        <apex:pageBlock title="Search Accounts by Account Name">
+            <apex:inputText value="{!accountName}" html-placeholder="Enter Account Name" id="text1" onkeypress="return onKeyup_TxtFieldcom(event);"/>
+            &nbsp;&nbsp;
+            <apex:pageBlockButtons >
+                <apex:commandButton action="{!searchAccount}" value="Search" reRender="out1,out2"/>
+                &nbsp;&nbsp;&nbsp;
+                <apex:commandLink action="{!clearList}" value="clear List" reRender="out1,out2"></apex:commandLink>
+                &nbsp;&nbsp;&nbsp;
+                <apex:commandButton value="Show All Records" Action="{!showAllRecords}"/>
+            </apex:pageBlockButtons>    
+        </apex:pageBlock>
+        <apex:pageBlock title="Account Records :{!countAllAccount}" rendered="{!accList.size>0}">
+            <apex:pageBlockTable value="{!accList}" var="accObj" >
+                <apex:column value="{!accObj.id}"/>
+                <apex:column value="{!accObj.name}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+        <apex:outputPanel id="out1">
+            <apex:pageBlock title="Results Found : {!countsearchedAccount}" tabStyle="Account" rendered="{!accSearchList.size>0}">
+                <apex:pageBlockTable value="{!accSearchList}" var="accObj">
+                    <apex:column value="{!accObj.id}"/>
+                    <apex:column value="{!accObj.name}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

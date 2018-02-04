@@ -1,0 +1,57 @@
+<apex:page controller="Deletecontact" action="{!displayContacts}" >
+    <apex:image value="{!$Resource.ContactLogo}" width="90" height="90"/>
+    <apex:messages id="message1"/>
+    <apex:form >
+        <span style="float: right; height:20px;">
+            <apex:repeat value="{!alphabateList}" var="itr">
+                <apex:commandLink action="{!showRecords}" reRender="showContact,,relatedContacts">
+                    <apex:param value="{!itr}" assignTo="{!strchar}" name="paramvar"/>{!itr}</apex:commandLink>
+                &nbsp;&nbsp;
+            </apex:repeat>
+        </span>
+        <apex:outputPanel id="relatedContacts">
+            <apex:pageBlock title="Related Contact List" id="p" rendered="{!contactList.size>0}">
+                <apex:pageBlockTable value="{!contactList}" var="cntObj" id="table1">
+                    <apex:column id="cl1">
+                        <a href="#" onclick="deleteRecord('{!cntObj.Id}')">delete</a>    
+                    </apex:column>
+                    <apex:column value="{!cntObj.Id}"/>
+                    <apex:column value="{!cntObj.Name}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+    <script>
+    function deleteRecord(cntId)
+    {
+        var a=confirm("Record Will be Deleted !!!")
+        if(a)
+        {
+            Visualforce.remoting.Manager.invokeAction
+            (
+                '{!$RemoteAction.Deletecontact.deletecnt}',
+                cntId,
+                function(result,event)
+                {
+                    alert(event.status);
+                    
+                    if(event.status)
+                    {
+                        alert('Record Deleted Successfully')
+                        window.location.reload();
+                    }
+                    else if(event.type=='Exception')
+                    {
+                        alert('Record Can not be Deleted')
+                    }
+                        else
+                        {
+                            document.getElementById('message1')=event.message;
+                        }
+                },{Escape : true}
+            );
+        }
+        
+    }
+    </script>
+</apex:page>

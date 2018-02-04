@@ -1,0 +1,28 @@
+<apex:page controller="AlphaSearchController" action="{!displayContacts}">
+    <apex:form >
+        <apex:pageMessages ></apex:pageMessages>
+        <span style="float: right; height:20px;">
+            <apex:repeat value="{!alphabateList}" var="itr">
+                <apex:commandLink action="{!showRecords}" reRender="showContact,relatedContacts">
+                    <apex:param value="{!itr}" assignTo="{!strchar}" name="paramvar"/>{!itr}</apex:commandLink>
+                &nbsp;&nbsp;
+            </apex:repeat>
+        </span>
+        <apex:outputPanel id="relatedContacts">
+            <apex:pageBlock title="Related Contact List" id="p" rendered="{!contactList.size>0}">
+                <apex:pageBlockTable value="{!contactList}" var="cntObj">
+                    <apex:column value="{!cntObj.Id}"/>
+                    <apex:column value="{!cntObj.Name}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:outputPanel>
+        <apex:outputPanel id="showContact">
+            <apex:pageBlock title="Searched" rendered="{!showContactList.size>0}">
+                <apex:pageBlockTable value="{!showContactList}" var="cntObj">
+                    <apex:column value="{!cntObj.Id}"/>
+                    <apex:column value="{!cntObj.Name}"/>
+                </apex:pageBlockTable>
+            </apex:pageBlock>
+        </apex:outputPanel>
+    </apex:form>
+</apex:page>

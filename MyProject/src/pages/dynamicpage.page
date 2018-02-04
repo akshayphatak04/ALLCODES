@@ -1,0 +1,78 @@
+<apex:page Controller="QueryBuilderController">
+<apex:form id="form">
+      <apex:pageBlock >
+        <apex:outputLabel > 
+          <h1> 
+            <B> Select Object   :  
+            </B> 
+          </h1>   
+        </apex:outputLabel>  
+<apex:selectList size="1" style="width:200px;" value="{!selectObjectOption}" >
+          <apex:selectOptions value="{!item}" /> 
+          <apex:actionSupport event="onchange" action="{!SelectObj}"  reRender="abcd"/>
+        </apex:selectList>
+        <apex:panelGrid columns="4" id="abcd"> 
+          <apex:outputLabel > 
+            <h1> 
+              <B> Object Fields   :  
+              </B> 
+            </h1>  
+          </apex:outputLabel>
+          <apex:selectList id="sel1" value="{!leftselected}" multiselect="true" style="width:200px" size="5">
+            <apex:selectOptions value="{!unselectedvalues}" />
+          </apex:selectList> 
+          <apex:panelGroup >
+            <br/>
+            <apex:image value="https://hisrinu.files.wordpress.com/2011/05/select.jpg">
+              <apex:actionSupport event="onclick" action="{!selectclick}" reRender="abcd"/>
+            </apex:image>
+            <br/>
+            <br/>
+            <apex:image value="https://hisrinu.files.wordpress.com/2011/05/unselect.jpg">
+              <apex:actionSupport event="onclick" action="{!unselectclick}" reRender="abcd"/>
+            </apex:image>
+          </apex:panelGroup> 
+          <apex:selectList id="sel2" value="{!rightselected}" multiselect="true" style="width:200px" size="5">
+            <apex:selectOptions value="{!SelectedValues}" />
+          </apex:selectList>
+        </apex:panelGrid>
+        <apex:pageBlockSection columns="1">
+          <apex:outputLabel > 
+            <h1> 
+              <B> Maximum Records to Select   :  
+              </B> 
+            </h1>
+          </apex:outputLabel> 
+          <apex:selectList size="1" style="width:150px;" value="{!recordCount}">
+            <apex:selectOptions value="{!itemno}"/>  
+          </apex:selectList>    
+          <apex:outputLabel > 
+            <h1> 
+              <B> Sort As :  
+              </B> 
+            </h1> 
+          </apex:outputLabel>
+          <apex:selectRadio value="{!sortOrder}">
+            <apex:selectOption itemLabel="Ascending" itemValue="asc" />
+            <apex:selectOption itemLabel="Descending" itemValue="desc"/>           
+          </apex:selectRadio>      
+        </apex:pageBlockSection>
+        <apex:commandButton action="{!onClickExecute}" style="width:100px;" value="ExecuteQuery" reRender="form"/>
+        <apex:pageBlockSection columns="4">
+          <h1> 
+            <b>SOQL Query 
+            </b> 
+          </h1>
+          <apex:inputTextarea style="weidth:200px;" value="{!soslQuery}" > 
+          </apex:inputTextarea>
+        </apex:pageBlockSection>
+        <apex:pageBlockSection columns="4">
+          <apex:pageBlockTable value="{!lstofFinalRecords}" var="rec">
+            <apex:repeat value="{!lstFlds}" var="fld">
+              <apex:column value="{!rec[fld]}"/>
+            </apex:repeat>       
+          </apex:pageBlockTable> 
+        </apex:pageBlockSection>
+     </apex:pageBlock>
+  </apex:form>
+</apex:page>
