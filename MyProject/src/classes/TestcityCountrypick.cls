@@ -29,7 +29,7 @@ public class TestcityCountrypick
         insert city4;
         
     }
-    /**
+/**
 * When Country Selected
 * @param NA
 * Return Type NA
@@ -43,9 +43,8 @@ public class TestcityCountrypick
         ccObj.country='France';
         List<SelectOption> optionList1=ccObj.getCitiesSelectList();
       	System.assertEquals(3,optionList1.size());
-        
     }
-    /**
+/**
 * When Country not Selected
 * @param NA
 * Return Type NA
@@ -66,7 +65,6 @@ public class TestcityCountrypick
     {
         CityCountryPickerController ccObj=new CityCountryPickerController();
         List<SelectOption> lst=ccObj.getCountriesSelectList();
-        System.debug('lst '+lst);
         System.assertEquals(3,lst.size());
     }
 }
