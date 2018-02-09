@@ -15,7 +15,7 @@ public class SearchAccountTest
 {
     /**
      * Class creates Bulk Records 
-	 */
+     */
     public class Datafactory
     {
         /**
@@ -28,12 +28,12 @@ public class SearchAccountTest
             List<Account> accList=new List<Account>();
             for(integer i=0;i<noOfAccounts;i++)
             {
-                  Account acc=new Account( 
-            						name='gClass'+i,
-            						SLA__c='Gold',
-            						SLASerialNumber__c='5896',
-            						SLAExpirationDate__c=Date.newInstance(2017,2,2)
-        						);
+                Account acc=new Account( 
+						name='gClass'+i,
+						SLA__c='Gold',
+						SLASerialNumber__c='5896',
+						SLAExpirationDate__c=Date.newInstance(2017,2,2)
+        				);
                 accList.add(acc);
             }
             return accList;
@@ -43,10 +43,10 @@ public class SearchAccountTest
      * This Method search for Available Account in database
      * @param NA
      * Return Type NA
-	*/
+     */
     public static testmethod void checkAvailableAcc()
     {
-		Datafactory df=new datafactory();
+	Datafactory df=new datafactory();
         List<Account> accList=df.getAccount(12);
         System.debug(accList);
         Insert accList;
@@ -59,10 +59,10 @@ public class SearchAccountTest
      * This Method test for Unavailable Account in database
      * @param NA
      * Return type NA
-	*/
+     */
     public static testmethod void checkUnavailAcc()
     {
-		Datafactory df=new datafactory();
+	Datafactory df=new datafactory();
         List<Account> accList=df.getAccount(12);
         System.debug(accList);
         Insert accList;
@@ -75,10 +75,10 @@ public class SearchAccountTest
      *  This Method tests for null string
      * @param NA
      * Return Type NA
-	 */
+     */
     public static testmethod void checkNullAcc()
     {
-		Datafactory df=new datafactory();
+	Datafactory df=new datafactory();
         List<Account> accList=df.getAccount(12);
         System.debug(accList);
         Insert accList;
@@ -88,17 +88,16 @@ public class SearchAccountTest
         for(Apexpages.Message msgObj : Apexpages.getMessages())
         {
             System.assertEquals(Label.StringLengthError, msgObj.getSummary());
-            
-        }
+     	}
    }
     /**
      * This Method tests For clear function
      * @param NA
      * Return Type NA
-	 */
+     */
      public static testmethod void checkClear()
     {
-		Datafactory df=new datafactory();
+	Datafactory df=new datafactory();
         List<Account> accList=df.getAccount(12);
         System.debug(accList);
         Insert accList;
@@ -111,14 +110,13 @@ public class SearchAccountTest
        for(Apexpages.Message msgObj : Apexpages.getMessages())
         {
             System.assertEquals(Label.Errormsg1, msgObj.getSummary());
-            
-        }
+         }
     }
     /**
      * This testmethod tests for count of searched records
      * @param NA
      * Return Type NA
-	 */
+     */
     public static testmethod void checkCount()
     {
         Datafactory df=new datafactory();
@@ -129,7 +127,7 @@ public class SearchAccountTest
         m.accountName='gclass';
         m.searchAccount();
        	System.assertEquals(10,m.countsearchedAccount);
- 	}
+     }
     /**
      * This testmethod tests for fetching all Accounts 
      * @param NA
