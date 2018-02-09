@@ -2,8 +2,7 @@
  * This class is Exposing Webservices
  * Created By : Akshay Phatak
  * created Date : 15/01/2018
-
-*/
+ */
 global class leadManipulatorService 
 {
     /*This Class is for Response*/
