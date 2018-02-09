@@ -22,16 +22,16 @@ public with sharing class CityCountryPickerController
         
         // Find all the countries in the custom setting
         Map<String, Country__c> countries = Country__c.getAll();
-        System.debug('-------------'+Country__c.getAll());
+       
         
         // Sort them by name
         List<String> countryNames = new List<String>();
         countryNames.addAll(countries.keySet());
-        System.debug('+++++'+countries.keyset());
-        countryNames.sort();
+      	countryNames.sort();
         
         // Create the Select Options.
-        for (String countryName : countryNames) {
+        for (String countryName : countryNames) 
+	{
             Country__c country = countries.get(countryName);
             options.add(new SelectOption(country.Name, country.Name));
         }
@@ -60,15 +60,19 @@ public with sharing class CityCountryPickerController
         cityNames.addAll(cities.keySet());
         cityNames.sort();
         // Generate the Select Options based on the final sorted list
-        for (String cityName : cityNames) {
+        for (String cityName : cityNames) 
+	{
             City__c city = cities.get(cityName);
             options.add(new SelectOption(city.Name, city.Name));
         }
         
         // If no states are found, just say not required in the dropdown.
-        if (options.size() > 0) {
+        if (options.size() > 0) 
+	{
             options.add(0, new SelectOption('', '-- Select One --'));
-        } else {
+        } 
+	else 
+	{
             options.add(new SelectOption('', 'Not Required'));
         }
         return options;
