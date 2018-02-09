@@ -1,12 +1,19 @@
+/**
+* This class is for testing student form Controller
+* Created By : Akshay Phatak
+* Created Date : 24/12/2017
+*/
 @isTest
 public with sharing class Student_Reg_Form_TestClass {
-    
+    /**
+    * This is Datafactory for creating Data*/
     public class Test_Data_Factory
     {
         public  List<Student__c> insertStudentRecords(){
-            List<Student__c> studentList = new List<Student__c>();
+        List<Student__c> studentList = new List<Student__c>();
             
-            for(Integer i=0; i<10; i++){
+            for(Integer i=0; i<10; i++)
+            {
                 Student__c studObj = new Student__c(Name='demo'+i, City__c='City'+i);
                 studentList.add(studObj);
             }
@@ -23,9 +30,10 @@ public with sharing class Student_Reg_Form_TestClass {
             return lstOptions;
         }
     }
-    /**Method to test if records are successfully inserted or not
-* @param NA
-* Return type NA*/
+/**Method to test if records are successfully inserted or not
+  * @param NA
+  * Return type NA
+  */
     @isTest
     public static void insertionTestforStudentRecords()
     {
@@ -48,10 +56,10 @@ public with sharing class Student_Reg_Form_TestClass {
     
     @isTest
     /**
-* Method to test if the language translation is working properly or not
-* @param NA
-* Return Type NA
-*/
+      * Method to test if the language translation is working properly or not
+      * @param NA
+      * Return Type NA
+      */
     public static void testTranslationOfStud_RegPage()
     {
         ApexPages.StandardController sc = new ApexPages.StandardController(new Student__c());
@@ -66,7 +74,8 @@ public with sharing class Student_Reg_Form_TestClass {
         
         Test.stopTest();
         boolean gotLangSet = false;
-        if(studRegObj.language=='es'){
+        if(studRegObj.language=='es')
+        {
             gotLangSet = true;
         }
         System.assert(gotLangSet);
