@@ -17,23 +17,23 @@ public class TestAlphaSearch
          * This Method Creates Records Of Contacts
          * @param Integer No Of Records
          * Return Type List Of Contacts
-		 */
+         */
         public List<Account> createAccounts(Integer numberOfAccounts)
         {
             /**
              * This Method creates Accounts
              * @param integer
              * Return Type List of Accounts
-		     */
+	     */
             List<Account> accList=new List<Account>();
             for(integer i=1 ; i<=numberOfAccounts ; i++)
             {
                  Account acc=new Account( 
-            						name='gClass'+i,
-            						SLA__c='Gold',
-            						SLASerialNumber__c='5896',
-            						SLAExpirationDate__c=Date.newInstance(2017,2,2)
-        						);
+						name='gClass'+i,
+						SLA__c='Gold',
+						SLASerialNumber__c='5896',
+						SLAExpirationDate__c=Date.newInstance(2017,2,2)
+				         );
                 accList.add(acc);
             }
             return accList;
@@ -42,7 +42,7 @@ public class TestAlphaSearch
          * This Method creates Contacts
          * @param integer
          * Return Type List of Contacts
-		 */
+	 */
         public  List<Contact> createContacts( Integer numberOfContacts)
         {
             List < Contact > conList = new List < Contact >();
@@ -51,13 +51,13 @@ public class TestAlphaSearch
          	for (Integer i = 1 ; i <= numberOfContacts ; i++) 
         	{
           		Contact newCon = new Contact(
-                						 		FirstName = 'Ali'+i,
-                    							LastName ='l'+i,
-                                         		Email = 'akshay@gmail' + i + '.com',
-                    							AccountId=accList[0].Id
-                                        	);
+							     FirstName = 'Ali'+i,
+							     LastName ='l'+i,
+							     Email = 'akshay@gmail' + i + '.com',
+							     AccountId=accList[0].Id
+                                        	     );
 
-            	conList.add(newCon);
+            		conList.add(newCon);
         	} 
             return conList;
         }
@@ -72,12 +72,9 @@ public class TestAlphaSearch
         DataFactory df=new DataFactory();
         AlphaSearchController obj=new AlphaSearchController();
      	List<Contact> testContactList=df.createContacts(500);
-        System.debug('testContactList '+testContactList);
-        Insert testContactList;
-        System.debug('testContactList[0] '+testContactList[0].name);
-        obj.contactList=testContactList;
-        System.debug(obj.contactList);
-        PageReference pg=page.AccountPagePM5_2;
+       	Insert testContactList;
+	obj.contactList=testContactList;
+ 	PageReference pg=page.AccountPagePM5_2;
         pg.getParameters().put('paramvar','A');
         Test.setCurrentPage(pg);
         obj.showRecords();
@@ -96,8 +93,7 @@ public class TestAlphaSearch
         System.debug(testContactList);
         Insert testContactList;
         obj.contactList=testContactList;
-        System.debug(obj.contactList);
-        PageReference pg=page.AccountPagePM5_2;
+	PageReference pg=page.AccountPagePM5_2;
         pg.getParameters().put('paramvar','B');
         Test.setCurrentPage(pg);
         obj.showRecords();
@@ -115,8 +111,7 @@ public class TestAlphaSearch
      	List<Contact> testContactList=df.createContacts(500);
     	Insert testContactList;
         obj.contactList=testContactList;
-        System.debug('===='+obj.contactList);
-        PageReference pg=page.AccountPagePM5_2;
+	PageReference pg=page.AccountPagePM5_2;
         pg.getParameters().put('paramvar','');
         Test.setCurrentPage(pg);
         obj.showRecords();
@@ -135,11 +130,9 @@ public class TestAlphaSearch
      	DataFactory df=new DataFactory();
         AlphaSearchController obj=new AlphaSearchController();
      	List<Contact> testContactList=df.createContacts(500);
-        System.debug(testContactList);
-        Insert testContactList;
+	Insert testContactList;
         obj.contactList=testContactList;
-        System.debug(obj.contactList);
-        PageReference pg=page.AccountPagePM5_2;
+	PageReference pg=page.AccountPagePM5_2;
         pg.getParameters().put('paramvar','ALL');
         Test.setCurrentPage(pg);
         obj.showRecords();
@@ -149,16 +142,14 @@ public class TestAlphaSearch
      * This method checks whether All Related Contacts fetched
      * @param NA
      * Return Type NA
-	 */
+     */
     public static testmethod void checkAllRelatedContacts()
     {
         DataFactory df=new DataFactory();
         AlphaSearchController obj=new AlphaSearchController();
      	List<Contact> testContactList=df.createContacts(500);
-        System.debug(testContactList);
-        Insert testContactList;
+	Insert testContactList;
         obj.contactList=testContactList;
-        System.debug('++++ '+obj.contactList);
         string AccId=testContactList[0].Id;
         PageReference pg=page.AccountPagePM5_2;
         pg.getParameters().put('Id',AccId);
@@ -168,22 +159,20 @@ public class TestAlphaSearch
     }
     /* This method checks whether All Related Contacts fetched
      * @param NA
-     * Return Type NA
-	 */
+     * Return Type NA 
+     */
     public static testmethod void checkdisplayContacts()
     {
         DataFactory df=new DataFactory();
         AlphaSearchController obj=new AlphaSearchController();
      	List<Contact> testContactList=df.createContacts(500);
-        System.debug(testContactList);
-        Insert testContactList;
+	Insert testContactList;
         obj.contactList=testContactList;
-        System.debug('++++ '+obj.contactList);
-        string AccId=testContactList[0].AccountId;
+	string AccId=testContactList[0].AccountId;
         PageReference pg=page.ContactPagePM5_2;
         pg.getParameters().put('ACCid',AccId);
         Test.setCurrentPage(pg);
-		obj.displayContacts();
+	obj.displayContacts();
        	system.assertEquals(500,obj.contactList.size()); 	
     }
 }
