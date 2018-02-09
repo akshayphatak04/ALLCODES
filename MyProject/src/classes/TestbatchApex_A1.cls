@@ -13,10 +13,10 @@ public class TestbatchApex_A1 implements Database.Stateful
     {
         public List<Account> accountList;
         /**
-* This is method which creates Accounts
-* @param is of type Integer
-* Return type List of Account
-*/
+         * This is method which creates Accounts
+         * @param is of type Integer
+         * Return type List of Account
+         */
         public List<Account> createAccounts(Integer noOfAccounts)
         {
             Contact cntObj=new Contact(LastName='demo',Email='akshayphatak04@gmail.com');
@@ -30,10 +30,10 @@ public class TestbatchApex_A1 implements Database.Stateful
             return accountList;
         }
         /**
-* This method creates Opportunity Record
-* @param is of type integer
-* Return Type List of Opportunity
-*/
+          * This method creates Opportunity Record
+          * @param is of type integer
+          * Return Type List of Opportunity
+          */
         public List<Opportunity> createOpportunities(Integer noOfOpportunities)
         {
             List<Opportunity> oppList=new List<Opportunity>();
@@ -46,14 +46,13 @@ public class TestbatchApex_A1 implements Database.Stateful
                 }
             }
             return oppList;
-            
-        }
+         }
     }
     /**
-* this test method is for testing batch of 200 records
-* @param NA
-* Return type NA
-*/
+     * this test method is for testing batch of 200 records
+     * @param NA
+     * Return type NA
+     */
     static public testmethod void batchClassTest() 
     {  
         DataFactory df=new DataFactory();
