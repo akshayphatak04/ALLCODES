@@ -1,8 +1,12 @@
+/**
+* This class for testing of PDF page controller
+* Created By : Akshay Phatak
+* Created Date : 22/12/2017
+*/
 @isTest
 private class PDFTest 
 {
     @testSetup static void myUnitTest() 
-    
     {
         System.Test.startTest();
         List<BillTo__c> BillList=new List<BillTo__c>();
@@ -18,11 +22,7 @@ private class PDFTest
         	BillList.add(billObj);
         }
         insert BillList;
-        List<BillTo__c> billListRetrieved=[
-            select Id
-              from BillTo__c 
-        ]; 
-       
+        List<BillTo__c> billListRetrieved=[select Id from BillTo__c ]; 
         List<Invoice_Statements__c> invoiceList=new List<Invoice_Statements__c>();
         List<Merchandise__c> merchList=new  List<Merchandise__c>();
         for(integer i=0;i<3;i++)
@@ -30,7 +30,6 @@ private class PDFTest
             Merchandise__c mObj=new Merchandise__c(Name='Merch'+i,City__c='Pune',phone__c='222',Description__c='aa',Price__c=25,Total_Invent__c=2);
             merchList.add(mObj);
         }
-        
         insert merchList;
         for(Integer i=0;i<3;i++){
             Invoice_Statements__c invoiceObject=new Invoice_Statements__c();
@@ -40,15 +39,13 @@ private class PDFTest
            	invoiceList.add(invoiceObject);
         }
         insert invoiceList;
-        System.debug('-------------'+invoiceList);
-        List<Invoice_Statements__c> invoiceList1=[
-            select Id
-              from Invoice_Statements__c
-        ];
+        List<Invoice_Statements__c> invoiceList1=[select Id from Invoice_Statements__c];
         List<Line_Item__c> productList=new List<Line_Item__c>();
         Integer j=0;
-        for(Invoice_Statements__c invoiceObject:invoiceList1){
-         	for(Integer i=0;i<3;i++){
+        for(Invoice_Statements__c invoiceObject:invoiceList1)
+        {
+         	for(Integer i=0;i<3;i++)
+            {
          	    Line_Item__c productObject=new Line_Item__c();
          	     productObject.Unit_Price__c=200;
          	     productObject.Name='productsnm'+i;
@@ -59,34 +56,25 @@ private class PDFTest
          	j++;
         }  
         insert productList;
-       
         System.Test.stopTest();   
     }
-    public static testMethod void Scenario1(){
+    public static testMethod void Scenario1()
+    {
         System.Test.startTest();
-    	System.Test.setCurrentPage(
-            Page.InvoiceBestPract2
-        );         
+    	System.Test.setCurrentPage(Page.InvoiceBestPract2);         
         InvoiceController invObj=new InvoiceController();
         invObj.displayInvoiceList();
-        system.assertEquals(
-            invObj.invoiceList.size()
-            ,3
-        ); 
+        system.assertEquals(invObj.invoiceList.size(),3); 
         List<Invoice_Statements__c> invoiceObjectList=[
-            select Id 
-              from Invoice_Statements__c 
-             Limit 2
-        ];
-        System.debug('======'+invoiceObjectList[0].Id);
-       	pagereference pg= page.InvoicePagePDFpage;
+                                                        select Id 
+                                                        from Invoice_Statements__c 
+                                                         Limit 2
+                                                       ];
+    	pagereference pg= page.InvoicePagePDFpage;
         pg.getParameters().put('Id',invoiceObjectList[0].Id);
         Test.setCurrentPage(pg); 
        	invObj.displaynvoice();
-        system.assertEquals(
-            invObj.sourceInput
-            ,invoiceObjectList[0].Id
-        );    
+        system.assertEquals(invObj.sourceInput,invoiceObjectList[0].Id);    
         system.test.stopTest();
     }
     public static testMethod void Scenario2()
@@ -158,12 +146,13 @@ private class PDFTest
         Integer i=0;
       
        
-        for(Line_Item__c prodListtest:prodListtemp){
-            System.debug('+++++++'+prodListtest.Invoice_Statements__r.Id);
-            system.assertEquals(
-                prodListtest.Invoice_Statements__r.Id
-                ,prodTestList[i].Invoice_Statements__r.Id
-            );
+        for(Line_Item__c prodListtest:prodListtemp)
+        {
+            system.assertEquals
+                (
+                    prodListtest.Invoice_Statements__r.Id
+                   ,prodTestList[i].Invoice_Statements__r.Id
+                );
             i++;
         }
         system.test.stopTest();
